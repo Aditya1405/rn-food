@@ -31,7 +31,7 @@ const searchscreen = function(){
     }
     console.log(apiresult);
     return(
-        <View>
+        <View style={st.screen}>
             <Searchbar 
             //passing state param as prop to child 
             ontextchange={function(value){settext(value)}}
@@ -52,7 +52,9 @@ const searchscreen = function(){
 }
 // task 3
 const st = StyleSheet.create({
-
+    screen:{
+        flex:1
+    }
 })
 // task 4
 export default searchscreen
