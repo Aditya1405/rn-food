@@ -1,5 +1,5 @@
 // task 1
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Text, View, StyleSheet} from 'react-native'
 import Searchbar from '../src/components/searchbar'
 import yelp from '../src/api/yelp'
@@ -39,6 +39,11 @@ const searchscreen = function(props){
     //is first rendered badcode!!!
     //searchapi('pasta')
     //this will cause an infinite loop
+    //
+    //using useeffect to avoid infinite loop
+    useEffect(function(){
+        searchapi('pasta')
+    }, [])
     return(
         <View>
             <Searchbar 
