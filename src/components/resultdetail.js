@@ -8,6 +8,7 @@ const Resultdetail = function(props){
     //console.log(imgurl)
     return(
         <View style={st.container}>
+            
             <Image
                 style={st.Image}
                 //source={imgurl}
@@ -17,6 +18,7 @@ const Resultdetail = function(props){
             <Text>
                 {props.result.rating} Stars, {props.result.review_count} Reviews
             </Text>
+
         </View>
     )
 }

@@ -9,13 +9,15 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import searchscreen from './src/searchscreen.js'
+import restaurantdescscreen from './src/restaurantdescscreen'
 /**
  *  task 2
  *  create a fxn that return jsx
  */
 const nav = createStackNavigator(
   {
-  Search:searchscreen
+  Search:searchscreen,
+  desc:restaurantdescscreen
   },
   {
     initialRouteName: 'Search',

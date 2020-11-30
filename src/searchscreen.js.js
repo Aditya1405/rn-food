@@ -10,7 +10,8 @@ const searchscreen = function(){
     //declaring state
     const [text,settext] = useState('')
     //using destructing for useresults
-    console.log(useresults);
+    console.log('searchscreen');
+    //console.log(props);
     const [searchapi, error, apiresult]=useresults()
     /**
      * creating a helper function that will assist in grouping acc to price
@@ -29,9 +30,10 @@ const searchscreen = function(){
             })
         )
     }
-    console.log(apiresult);
     return(
+        //<> we can use empty tag instead of view to solve our issue without flex
         <View style={st.screen}>
+
             <Searchbar 
             //passing state param as prop to child 
             ontextchange={function(value){settext(value)}}
@@ -41,13 +43,15 @@ const searchscreen = function(){
             value = {text}
             />
             {error?<Text>{error}</Text>:null}
-            <Text>{'we have found'+ apiresult.length}</Text>
+            
             <ScrollView>
-            <Resultlist result ={filterresultbyprice('$')}   title="cost effective"/>
-            <Resultlist result ={filterresultbyprice('$$')} title="bit pricer"/>
-            <Resultlist result ={filterresultbyprice('$$$')} title="big spencer"/>
+            <Resultlist result ={filterresultbyprice('$')}   title="cost effective" />
+            <Resultlist result ={filterresultbyprice('$$')} title="bit pricer" />
+            <Resultlist result ={filterresultbyprice('$$$')} title="big spencer" />
             </ScrollView>
         </View>
+        //passing props.navigation to child screen
+        //</>
     )
 }
 // task 3
