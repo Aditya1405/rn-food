@@ -2,48 +2,16 @@
 import React, {useState, useEffect} from 'react'
 import {Text, View, StyleSheet} from 'react-native'
 import Searchbar from '../src/components/searchbar'
-import yelp from '../src/api/yelp'
+//this will return an array that contain all the items that is returned
+import useresults from './hooks/useresults'
 // task 2
 const searchscreen = function(props){
     //declaring state
     const [text,settext] = useState('')
-    /**
-     * declare another useState for yelp api why ?--do smth and update on screen {we use state}
-     * we initialize it with empty [] because the result that we are expecting is in form of a
-     * huge array of objects that will contain all the result that we got from api
-     * if you want to see the result 
-     * --->go to yelp api--->business endpoint--->business search--->response body
-     */
-    const [apiresult,setapiresult] = useState([])
-    const [error,seterror] =useState('')
-    const searchapi = async function(searchterm){
-        /**
-         * this is an async operation
-         */
-        console.log('hello');
-        try{
-            const response = await yelp.get('/search',
-            {
-                params:{
-                    limit:50,
-                    term: searchterm,
-                    location: 'san jose'
-                }
-            })
-            setapiresult(response.data.businesses)
-        }catch(e){
-            seterror('something went wrong')
-        }
-    }
-    //call searchapi
-    //is first rendered badcode!!!
-    //searchapi('pasta')
-    //this will cause an infinite loop
-    //
-    //using useeffect to avoid infinite loop
-    useEffect(function(){
-        searchapi('pasta')
-    }, [])
+    //using destructing for useresults
+    console.log(useresults);
+    const [searchapi, error, apiresult]=useresults()
+    
     return(
         <View>
             <Searchbar 
@@ -55,7 +23,7 @@ const searchscreen = function(props){
             value = {text}
             />
             {error?<Text>{error}</Text>:null}
-            <Text>{'we have found'+apiresult.length}</Text>
+            <Text>{'we have found'+ apiresult.length}</Text>
         </View>
     )
 }
