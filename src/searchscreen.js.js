@@ -1,6 +1,6 @@
 // task 1
 import React, {useState, useEffect} from 'react'
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, ScrollView} from 'react-native'
 import Searchbar from '../src/components/searchbar'
 //this will return an array that contain all the items that is returned
 import useresults from './hooks/useresults'
@@ -42,9 +42,11 @@ const searchscreen = function(){
             />
             {error?<Text>{error}</Text>:null}
             <Text>{'we have found'+ apiresult.length}</Text>
+            <ScrollView>
             <Resultlist result ={filterresultbyprice('$')}   title="cost effective"/>
             <Resultlist result ={filterresultbyprice('$$')} title="bit pricer"/>
             <Resultlist result ={filterresultbyprice('$$$')} title="big spencer"/>
+            </ScrollView>
         </View>
     )
 }

@@ -27,7 +27,9 @@ const Resultlist = function(props){
 const Style = StyleSheet.create({
     title:{
         fontSize:18,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        marginLeft:10,
+        
     }
 })
 
