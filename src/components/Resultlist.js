@@ -1,5 +1,6 @@
 import React from 'react'
 import {Text, View, StyleSheet, FlatList} from 'react-native'
+import Resultdetail from '../components/resultdetail'
 //we use prop whenever we want to communicate date from parent to child
 const Resultlist = function(props){
     return(
@@ -12,7 +13,10 @@ const Resultlist = function(props){
                 keyExtractor={res=>res.id}
                 renderItem={function({item}){
                     return(
-                        <Text>{item.name}</Text>
+                        <Resultdetail
+                            result={item}
+                        />
+                        
                     )
                 }}
             />
