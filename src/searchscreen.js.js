@@ -4,14 +4,32 @@ import {Text, View, StyleSheet} from 'react-native'
 import Searchbar from '../src/components/searchbar'
 //this will return an array that contain all the items that is returned
 import useresults from './hooks/useresults'
+import Resultlist from './components/Resultlist'
 // task 2
-const searchscreen = function(props){
+const searchscreen = function(){
     //declaring state
     const [text,settext] = useState('')
     //using destructing for useresults
     console.log(useresults);
     const [searchapi, error, apiresult]=useresults()
-    
+    /**
+     * creating a helper function that will assist in grouping acc to price
+     */
+    const filterresultbyprice = function(price){
+        //price ==='$'||'$$'||'$$$'
+        return (
+            /**
+             * deals with array
+             * every result from our result array we will ask if result.price 
+             * is equal to the price that we have just passed in
+             */
+            apiresult.filter(result=>{
+                //if this is true then return to the new result set from this function
+                return result.price===price 
+            })
+        )
+    }
+    console.log(apiresult);
     return(
         <View>
             <Searchbar 
@@ -24,6 +42,9 @@ const searchscreen = function(props){
             />
             {error?<Text>{error}</Text>:null}
             <Text>{'we have found'+ apiresult.length}</Text>
+            <Resultlist result ={filterresultbyprice('$')}   title="cost effective"/>
+            <Resultlist result ={filterresultbyprice('$$')} title="bit pricer"/>
+            <Resultlist result ={filterresultbyprice('$$$')} title="big spencer"/>
         </View>
     )
 }
