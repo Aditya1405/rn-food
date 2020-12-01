@@ -5,6 +5,9 @@ import Resultdetail from '../components/resultdetail'
 import {withNavigation} from 'react-navigation'
 //we use prop whenever we want to communicate date from parent to child
 const Resultlist = function(props){
+    if(!props.result.length){
+        return null
+    }
     console.log('resultlist');
     //console.log(props);
     return(
@@ -17,7 +20,8 @@ const Resultlist = function(props){
                 keyExtractor={res=>res.id}
                 renderItem={function({item}){
                     return(
-                        <TouchableOpacity onPress={function(){props.navigation.navigate('desc')}}>
+                                                                                     //adding additional info besides navigaiton just like intent in android
+                        <TouchableOpacity onPress={function(){props.navigation.navigate('desc',{id:item.id})}}>
                             <Resultdetail
                                 result={item}
                             />
